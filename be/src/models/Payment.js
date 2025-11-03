@@ -3,8 +3,8 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const paymentSchema = new mongoose.Schema({
     paymentId: {type: Number, required: false, unique: true, index: true}, 
-    vnpTxnRef: {type: String, required: false,sparse: true,unique: true},
-    momoTxnRef: { type: String, required: false, unique: true, sparse: true},
+    vnpTxnRef: {type: String, required: false, index: true}, 
+    momoTxnRef: { type: String, required: false, index: true},
     customerId: { type: Number, ref: 'Customer', required: true, index: true},
     priceId: {type: Number, required: true },
     amount: {type: Number, required: true},

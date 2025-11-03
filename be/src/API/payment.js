@@ -125,7 +125,6 @@ router.post('/create', auth, async (req, res) => {
         let paymentRecord = await Payment.findOne({
             customerId,
             status: 'pending',
-            paymentMethod: paymentMethod, // Chỉ tái sử dụng nếu cùng phương thức (MoMo <-> MoMo, VNPay <-> VNPay)
         }).sort({ createdAt: -1 });
 
         // Logic tính toán ngày hết hạn thực tế (cho giao dịch mới) 
@@ -142,7 +141,17 @@ router.post('/create', auth, async (req, res) => {
             paymentRecord.amount = amount;
             paymentRecord.priceId = priceId;
             paymentRecord.expiryDate = newExpiryDate; 
-            
+            if (paymentRecord.paymentMethod !== paymentMethod) {
+        // Nếu người dùng đổi phương thức thanh toán (ví dụ: từ VNPay sang MoMo)
+
+        // Cập nhật phương thức thanh toán mới
+        paymentRecord.paymentMethod = paymentMethod;
+        
+        // Đảm bảo mã giao dịch của phương thức cũ/mới đều là null/undefined
+        // vì đây là giao dịch pending MỚI
+        paymentRecord.vnpTxnRef = undefined; 
+        paymentRecord.momoTxnRef = undefined;
+    }
             await paymentRecord.save();
         } else {
             // 3. TẠO GIAO DỊCH MỚI
