@@ -121,11 +121,11 @@ router.post('/create', auth, async (req, res) => {
         // ... (Kết thúc Logic kiểm tra gói cước đang hoạt động) ...
         
         // 1. TÌM KIẾM GIAO DỊCH PENDING CỦA NGƯỜI DÙNG
-        // Tìm bản ghi 'pending' gần nhất, chỉ tìm trong 30 phút gần đây để đảm bảo giao dịch còn hợp lệ
+
         let paymentRecord = await Payment.findOne({
             customerId,
             status: 'pending',
-        }).sort({ createdAt: -1 });
+        });
 
         // Logic tính toán ngày hết hạn thực tế (cho giao dịch mới) 
         const newExpiryDate = calculateNewExpiryDate(

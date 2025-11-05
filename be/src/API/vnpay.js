@@ -3,7 +3,7 @@ const config = require('config');
 const crypto = require('crypto');
 const moment = require('moment');
 const querystring = require('qs');
-const jwt = require('jsonwebtoken'); // 👈 CẦN THÊM DÒNG NÀY ĐỂ DÙNG JWT
+const jwt = require('jsonwebtoken');
 const Payment = require('../models/Payment'); 
 const Customer = require('../models/Customer'); 
 
@@ -85,7 +85,7 @@ router.get('/vnpay_return', async (req, res) => {
 
     const secretKey = config.get('vnp_HashSecret');
     const clientReturnBaseUrl = config.get('vnp_ReturnUrlClient'); 
-    const JWT_SECRET = process.env.JWT_SECRET; // 👈 Lấy Secret Key từ Env
+    const JWT_SECRET = process.env.JWT_SECRET;
     
     delete vnp_Params['vnp_SecureHash'];
     delete vnp_Params['vnp_SecureHashType'];
@@ -128,8 +128,7 @@ router.get('/vnpay_return', async (req, res) => {
                     if (customer && JWT_SECRET) {
                         newToken = jwt.sign(
                             { id: customer.customerId, name: customer.Name, expiryDate: customer.ExpiryDate }, 
-                            JWT_SECRET, 
-                            { expiresIn: '7d' }
+                            JWT_SECRET
                         );
                     }
                 }
@@ -181,17 +180,14 @@ router.get('/vnpay_return', async (req, res) => {
                                 { 
                                     id: updatedCustomer.customerId, 
                                     name: updatedCustomer.Name,
-                                    // ✅ THÊM NGÀY HẾT HẠN MỚI VÀO TOKEN PAYLOAD
                                     expiryDate: updatedCustomer.ExpiryDate, 
                                 }, 
-                                JWT_SECRET, 
-                                { expiresIn: '7d' } // Token này có thể tồn tại lâu hơn token đăng nhập
+                                JWT_SECRET
                             );
                             console.log('SUCCESS: Generated new JWT with ExpiryDate.');
                         } else {
                             console.error('ERROR: Failed to generate new JWT after successful payment.');
                         }
-                        // ... (Log thành công giữ nguyên) ...
                         message = 'Giao dịch thành công & Gói cước đã được kích hoạt.';
                     }
                 }

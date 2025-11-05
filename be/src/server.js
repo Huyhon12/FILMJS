@@ -22,7 +22,6 @@ const watchhistoryRouter = require('./API/watchhistory');
 const priceRouter = require('./API/price');
 const vnpayRouter = require('./API/vnpay');
 const paymentRouter = require('./API/payment');
-const momoRouter = require('./API/momo');
 
 // Sử dụng router
 app.use('/api/movies', movieRouter);
@@ -32,7 +31,6 @@ app.use('/api/watchhistory' ,watchhistoryRouter);
 app.use('/api/prices', priceRouter);
 app.use('/api/vnpay', vnpayRouter);
 app.use('/api/payment', paymentRouter);
-app.use('/api/momo', momoRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
