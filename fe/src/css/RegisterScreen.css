@@ -1,0 +1,195 @@
+:root {
+    --fpt-orange-start: #ff5500;
+    --fpt-orange-end: #ff0000;
+    --dark-bg: #1e1e1e;
+    --card-bg: #2a2a2a;
+    --input-bg: #383838;
+    --social-bg: #333333; 
+    --text-light: #f0f0f0;
+    --text-gray: #b0b0b0;
+}
+
+/* -------------------- Container & Card -------------------- */
+.register-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    background-image: url('../../public/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.register-card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding: 30px 40px;
+    color: var(--text-light);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.register-header h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* -------------------- Input Field -------------------- */
+.input-field {
+    background-color: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 15px;
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--fpt-orange-end);
+}
+
+/* -------------------- Continue Button & Login Link -------------------- */
+.continue-button {
+    background: linear-gradient(to right, var(--fpt-orange-start), var(--fpt-orange-end));
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.continue-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.login-link-container {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-gray);
+}
+
+.login-link-button {
+    background: none; 
+    border: none;    
+    padding: 0;      
+    color: var(--fpt-orange-end);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.login-link-button:hover {
+    color: var(--fpt-orange-start);
+    text-decoration: underline;
+}
+
+/* -------------------- Divider -------------------- */
+.divider {
+    text-align: center;
+    color: var(--text-gray);
+    position: relative;
+    font-size: 0.85em;
+    margin: 15px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #444;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+/* -------------------- Social Login Buttons -------------------- */
+.social-login-row {
+    display: flex;
+    gap: 10px;
+}
+
+.social-button {
+    flex: 1;
+    background-color: var(--social-bg);
+    border: 1px solid #444;
+    color: var(--text-light);
+    padding: 12px 10px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-button:hover {
+    background-color: #444;
+}
+
+.social-icon {
+    font-size: 1.2em;
+}
+
+.google-button .social-icon.google {
+    background: rgb(0, 0, 0); 
+    border-radius: 50%;
+    padding: 2px;
+}

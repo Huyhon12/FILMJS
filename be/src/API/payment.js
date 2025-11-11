@@ -217,4 +217,89 @@ router.post('/update_status', async (req, res) => {
     }
 });
 
+
+router.get('/revenue', async (req, res) => {
+    try {
+      const now = new Date();
+      const year = parseInt(req.query.year) || now.getFullYear();
+      const month = req.query.month ? parseInt(req.query.month) : null; // 1-12 hoặc null
+  
+      const start = month
+        ? new Date(year, month - 1, 1)
+        : new Date(year, 0, 1);
+      const end = month
+        ? new Date(year, month, 1)
+        : new Date(year + 1, 0, 1);
+  
+      // Dùng đúng field trong DB: paymentDate + status = "success"
+      const match = {
+        status: 'success',
+        paymentDate: { $gte: start, $lt: end },
+      };
+  
+      // Tổng doanh thu + số giao dịch
+      const summary = await Payment.aggregate([
+        { $match: match },
+        {
+          $group: {
+            _id: null,
+            totalRevenue: { $sum: '$amount' },
+            orderCount: { $sum: 1 },
+          },
+        },
+      ]);
+  
+      let stats = [];
+  
+      if (month) {
+        // 👉 Có month: group theo ngày
+        const dailyAgg = await Payment.aggregate([
+          { $match: match },
+          {
+            $group: {
+              _id: { $dayOfMonth: '$paymentDate' },
+              total: { $sum: '$amount' },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ]);
+  
+        stats = dailyAgg.map((d) => ({
+          day: d._id,
+          total: d.total,
+        }));
+      } else {
+        // 👉 Không có month: group theo tháng
+        const monthlyAgg = await Payment.aggregate([
+          { $match: match },
+          {
+            $group: {
+              _id: { $month: '$paymentDate' },
+              total: { $sum: '$amount' },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ]);
+  
+        stats = monthlyAgg.map((d) => ({
+          month: d._id,
+          total: d.total,
+        }));
+      }
+  
+      const s = summary[0] || { totalRevenue: 0, orderCount: 0 };
+  
+      res.json({
+        year,
+        month: month || null,
+        totalRevenue: s.totalRevenue,
+        orderCount: s.orderCount,
+        stats,
+      });
+    } catch (error) {
+      console.error('Lỗi lấy doanh thu:', error.message);
+      res.status(500).json({ error: 'Lỗi khi lấy doanh thu' });
+    }
+  });
+
 module.exports = router;

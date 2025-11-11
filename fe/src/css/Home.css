@@ -1,0 +1,55 @@
+.home-container {
+ background-color: #000000;
+    color: #fff; /* Màu chữ trắng */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu để nền đen phủ hết trang */
+    display: flex;
+    flex-direction: column; /* Header ở trên, sau đó đến nội dung */
+    font-family: 'Inter', sans-serif; /* Sử dụng font Inter hoặc font mặc định */
+    padding: 0 20px; /* Đệm bên trái và phải */
+}
+
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các phần tử xếp chồng lên nhau khi không đủ không gian */
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 20px;
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        padding: 15px;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column; /* Xếp chồng carousel và up-next trên các màn hình nhỏ hơn */
+        padding: 10px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper {
+        padding: 5px; /* Đảm bảo khoảng đệm vẫn hợp lý trên di động */
+        gap: 5px; /* Giảm khoảng cách tối đa */
+    }
+
+    .home-container {
+        font-size: 14px; /* Giảm kích thước chữ cho màn hình nhỏ */
+    }
+}
+
+
+
+.carousel {
+    flex: 1; /* Cho phép carousel chiếm không gian còn lại */
+}
+
+.up-next {
+    flex: 1; /* Cho phép phần up-next chiếm không gian còn lại */
+}

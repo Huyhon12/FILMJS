@@ -1,0 +1,158 @@
+/* --- watchlater.css --- */
+
+/* 1. Reset và Thiết lập Chung cho Trang */
+.main-app-container {
+    background-color: #141414; /* Nền tối đồng bộ với Header */
+    min-height: 100vh;
+    color: #e5e5e5; /* Màu chữ sáng */
+    font-family: 'Inter', sans-serif;
+}
+
+.content-area-wrapper {
+    padding-top: 80px; /* Bù trừ chiều cao Header */
+    padding-bottom: 50px;
+    min-height: calc(100vh - 80px); /* Đảm bảo chiều cao tối thiểu */
+}
+
+.content-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4%; /* Padding hai bên cho responsive */
+}
+
+/* 2. Tiêu đề trang */
+.watch-later-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    color: #ffffff;
+    border-bottom: 2px solid #e50914; /* Đường kẻ đỏ dưới tiêu đề */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* 3. Danh sách phim (Grid Layout) */
+.movies-list {
+    display: grid;
+    /* Hiển thị 5 cột trên màn hình lớn, tự động điều chỉnh */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 20px;
+}
+
+/* 4. Thẻ phim (Movie Card) */
+.movie-card {
+    background-color: #1f1f1f; /* Nền tối hơn cho thẻ */
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px); /* Hiệu ứng nổi */
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3); /* Bóng đổ đỏ nhẹ */
+    z-index: 10;
+}
+
+.movie-card-image {
+    width: 100%;
+    height: 330px; /* Chiều cao cố định cho ảnh */
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.movie-card:hover .movie-card-image {
+    opacity: 0.8;
+}
+
+.movie-card-title-link {
+    text-decoration: none;
+    flex-grow: 1;
+    display: block;
+    padding: 10px 15px 5px;
+}
+
+.movie-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s;
+}
+
+.movie-card-title-link:hover .movie-card-title {
+    color: #e50914; /* Chuyển màu tiêu đề khi hover */
+}
+
+/* 5. Nút Xóa (Được gọi là .edit-button trong component) */
+.edit-button {
+    background-color: #e50914; /* Màu đỏ của NETFLIX */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 15px 15px 15px; /* Margin dưới để cách xa mép thẻ */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s;
+    align-self: flex-end; /* Đảm bảo nút nằm ở cuối thẻ */
+    width: calc(100% - 30px); /* Chiều rộng bằng thẻ - padding */
+}
+
+.edit-button:hover {
+    background-color: #ff2933; /* Đỏ sáng hơn khi hover */
+}
+
+.edit-button:active {
+    transform: translateY(1px);
+}
+
+/* 6. Trạng thái Loading và Lỗi */
+.loading-state,
+.error-state,
+.no-content {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 100px 20px;
+    color: #a0a0a0;
+}
+
+.error-state {
+    color: #ff3860;
+}
+
+/* 7. Responsive cho màn hình nhỏ */
+@media (max-width: 1200px) {
+    .movies-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .watch-later-title {
+        font-size: 2rem;
+    }
+    .movies-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên mobile */
+    }
+    .content-container {
+        padding: 0 20px;
+    }
+    .movie-card-image {
+        height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-list {
+        grid-template-columns: 1fr; /* 1 cột trên điện thoại nhỏ */
+    }
+}

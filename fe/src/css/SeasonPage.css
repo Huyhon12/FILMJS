@@ -1,0 +1,168 @@
+/* --- BIẾN CSS --- */
+:root {
+    --primary-red: #E50914; 
+    --dark-bg: #141414; 
+    --card-bg: #222222; 
+    --text-color: #f1f1f1; 
+    --secondary-text: #b0b0b0; 
+}
+
+/* --- LAYOUT CHUNG --- */
+.main-layout {
+    min-height: 100vh;
+    background-color: var(--dark-bg);
+    color: var(--text-color); 
+}
+
+/* --- CONTAINER NỘI DUNG (SeasonPage, SearchPage) --- */
+.season-page-content {
+    /* *** ĐIỀU CHỈNH CHÍNH: Giảm Max-width để nội dung dồn vào giữa và trông đầy đặn hơn *** */
+    max-width: 1200px; 
+    padding: 40px 60px; /* Giữ padding vừa phải */
+    margin: 0 auto;
+}
+
+/* --- TIÊU ĐỀ TRANG --- */
+.page-title {
+    color: var(--text-color);
+    /* Giữ font size to, rõ */
+    font-size: 2.2rem; 
+    font-weight: 800; 
+    margin-bottom: 30px; 
+    border-bottom: 3px solid var(--primary-red); 
+    padding-bottom: 12px;
+    text-transform: uppercase; 
+}
+
+/* --- DANH SÁCH PHIM - BỐ CỤC LƯỚI --- */
+.movie-list-container {
+    display: grid;
+    /* ✅ ĐIỀU CHỈNH: Tăng minmax lên để thẻ to hơn và dùng 1fr để lấp đầy */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr)); /* Ví dụ 420px, bạn có thể thử 400px, 450px */
+    gap: 50px; 
+    padding-top: 10px;
+    overflow-x: visible; 
+    white-space: normal; 
+}
+
+/* --- THẺ PHIM ĐƠN LẺ --- */
+.movie-cardd-link {
+    text-decoration: none;
+    color: inherit;
+    width: auto; 
+    flex-shrink: 1; 
+    display: block;
+}
+
+.movie-cardd {
+    background-color: var(--card-bg); 
+    border-radius: 15px; 
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-cardd:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8); 
+}
+
+.movie-poster-wrapper {
+    position: relative;
+    width: 100%;
+    /* Tỷ lệ ảnh đứng (Portrait) 2:3 */
+    padding-bottom: 150%; 
+    background-color: #333333;
+    overflow: hidden;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.movie-poster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.movie-cardd:hover .movie-poster {
+    transform: scale(1.05); 
+}
+
+.movie-info {
+    padding: 15px 15px 10px 15px;
+    flex-grow: 1;
+    background-color: var(--card-bg); 
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.movie-title {
+    /* Tăng font size to, rõ */
+    font-size: 1.5rem; 
+    font-weight: 700;
+    color: var(--text-color); 
+    margin: 3px 0 5px 0; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-description {
+    /* Tăng font size và line-height to, rõ */
+    font-size: 1.1rem; 
+    color: var(--secondary-text); 
+    line-height: 1.5; 
+    margin-bottom: 0;
+    
+    /* Giữ giới hạn 2 dòng để kiểm soát chiều cao thẻ */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 1200px) {
+    .movie-list-container {
+        /* Giảm nhẹ kích thước cột trên tablet */
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .season-page-content {
+        padding: 30px 20px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .movie-list-container {
+        /* Chuyển sang 2 cột trên điện thoại, giữ kích thước to nhất có thể */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .movie-title {
+        font-size: 1.2rem;
+    }
+    
+    .movie-description {
+        font-size: 0.9rem;
+    }
+    
+    .movie-info {
+        padding: 10px;
+    }
+}

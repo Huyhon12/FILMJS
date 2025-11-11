@@ -1,0 +1,223 @@
+.featured-movie-carousel {
+    flex: 3;
+    width: 0;
+    position: relative;
+    min-height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px;
+    box-sizing: border-box;
+}
+
+.carousel-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out, transform 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 2;
+}
+
+.carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-nav-button.prev {
+    left: 40px;
+}
+
+.carousel-nav-button.next {
+    right: 40px;
+}
+
+.movie-details {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 700px;
+    margin-right: auto;
+    justify-content: flex-start;
+}
+
+.main-movie-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+}
+
+.main-movie-info h2 {
+    font-size: 3.0em;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.main-movie-info p {
+    font-size: 1.2em;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+}
+
+.watch-now-button {
+    background-color: #E50914;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 15px 30px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.watch-now-button:hover {
+    background-color: #f40612;
+    transform: scale(1.05);
+}
+
+.carousel-indicators {
+    position: absolute; 
+    bottom: 25px;
+    left: 60px;
+    z-index: 4;
+    display: flex;
+    gap: 8px;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.indicator-dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+}
+
+.indicator-dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: #E50914;
+    transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+    .featured-movie-carousel {
+        flex: 4;
+    }
+    .carousel-nav-button {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+    }
+    .main-movie-info h2 {
+        font-size: 2.5em;
+    }
+    .main-movie-info p {
+        font-size: 1.1em;
+    }
+    .watch-now-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-movie-carousel {
+        flex: none;
+        width: 100%;
+        min-height: 350px;
+        padding: 20px;
+    }
+    .carousel-nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .main-movie-info h2 {
+        font-size: 2.0em;
+    }
+    .main-movie-info p {
+        font-size: 1.0em;
+    }
+    .watch-now-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .carousel-indicators {
+        left: 20px;
+        bottom: 15px;
+    }
+    .indicator-dot, .indicator-dot.active {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-movie-carousel {
+        padding: 15px;
+    }
+    .carousel-nav-button {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    .main-movie-info h2 {
+        font-size: 1.8em;
+    }
+    .main-movie-info p {
+        font-size: 0.9em;
+    }
+    .watch-now-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,126 @@
+:root {
+    --star-color: #ffc107; /* Màu vàng cam cho sao */
+}
+
+/* Container chính */
+.movie-player-container {
+    padding: 0px 5%;
+background-color: #000000;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 40px;
+}
+
+.main-video-player {
+    width: 100%;
+    margin: 30px 0; /* Thêm margin để tạo khoảng cách */
+    height: 600px; 
+}
+
+.movie-video {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Phần chi tiết & tiêu đề */
+.details-and-actions-section {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.movie-details-col.full-width-col {
+    width: 100%; 
+}
+
+.movie-info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-button {
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.movie-info-box h2 {
+    font-size: 2.5em; 
+    margin-top: 15px; 
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 700;
+}
+
+.movie-description {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: #ccc;
+}
+
+/* Rating ngôi sao */
+.rating {
+    margin-top: 15px;
+}
+
+.rating-stars {
+    display: flex;
+    position: relative;
+    line-height: 1; 
+}
+
+.star {
+    font-size: 1.5em; 
+    margin: 0 2px;
+}
+
+.full-star {
+    color: var(--star-color);
+}
+
+.empty-star {
+    color: #444; 
+}
+
+.half-star-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.half-star {
+    color: #444;
+    position: relative;
+    overflow: hidden;
+}
+
+.half-star::after {
+    content: "★"; 
+    color: var(--star-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; 
+    overflow: hidden;
+}
+
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .main-video-player {
+        height: 450px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .main-video-player {
+        height: 300px;
+    }
+}

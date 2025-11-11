@@ -1,0 +1,101 @@
+.search-bar-wrapper {
+  /* Đảm bảo nó được định vị tương đối để dropdown có thể định vị tuyệt đối */
+  position: relative;
+  /* Giả sử thanh tìm kiếm nằm trong Header */
+  z-index: 1000; 
+  width: 400px; /* Điều chỉnh chiều rộng theo ý muốn */
+}
+
+.search-form {
+  display: flex;
+  border-radius: 8px; /* Tùy chỉnh theo thiết kế */
+  overflow: hidden;
+  background-color: #333333; /* Màu nền cho input và button */
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #f1f1f1;
+  background-color: transparent; /* Nền trong suốt để dùng màu nền của form */
+}
+
+.search-button {
+  background-color: #e50914; /* Màu nổi bật, tùy chỉnh */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- Dropdown Gợi ý --- */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%; /* Đặt ngay dưới thanh input */
+  left: 0;
+  width: 100%; /* Chiều rộng bằng thanh tìm kiếm */
+  background-color: #1c1c1c; /* Nền tối hơn */
+  border: 1px solid #333;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  /* Giữ cho dropdown cuộn được nếu quá nhiều kết quả */
+  max-height: 400px; 
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #f1f1f1;
+  border-bottom: 1px solid #2a2a2a;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+  background-color: #282828; /* Màu hover */
+}
+
+.suggestion-image {
+  width: 50px; /* Kích thước ảnh poster nhỏ */
+  height: 70px; /* Tùy chỉnh tỷ lệ */
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.suggestion-info {
+  flex-grow: 1;
+}
+
+.suggestion-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-episode {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.suggestion-footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #dc3545; /* Màu đỏ nổi bật cho footer */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

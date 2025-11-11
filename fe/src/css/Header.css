@@ -1,0 +1,428 @@
+.header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: visible;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    color: #E50914;
+}
+
+.logo-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-main-text {
+    color: #E50914;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo-main-text:hover {
+    color: #f40612;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer; 
+}
+
+.nav-link:hover {
+    color: #E50914;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-arrow {
+    font-size: 0.7em;
+    margin-left: 5px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown nằm ngang (flex container) */
+.dropdown-content {
+    /* SỬA LỖI: Mặc định phải là none để ẩn */
+    display: none; 
+    flex-wrap: wrap;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 400px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1;
+    padding: 10px 10px;
+    top: 100%; 
+    left: 0;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    white-space: nowrap; 
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 3px;
+}
+
+.dropdown-content a:hover {
+    background-color: #383838;
+    color: #E50914;
+}
+
+.dropdown:hover .dropdown-content {
+    /* Khi hover thì hiện ra */
+    display: flex; 
+}
+
+.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    border: 1px solid #E50914;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #383838;
+    margin-right: 5px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #b0b0b0; 
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Trong file Header.css hoặc tương đương */
+.vip-status-button {
+    background-color: #f7931a; /* Màu cam hoặc vàng nổi bật */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: default; /* Không cho click */
+    margin-right: 15px;
+    font-size: 0.9em;
+    /* Thêm hiệu ứng nổi bật nếu là VIP */
+    box-shadow: 0 0 10px rgba(247, 147, 26, 0.5); 
+}
+
+.vip-button {
+    /* CSS cho nút UP VIP ban đầu */
+    background-color: #e50914; 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: default; /* Không cho click */
+    margin-right: 15px;
+    font-size: 0.9em;
+    box-shadow: 0 0 10px rgba(247, 147, 26, 0.5);
+}
+
+.vip-button:hover {
+    background-color: #ffff70;
+    transform: scale(1.05);
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #E50914;
+}
+
+.login-button {
+    background-color: #E50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: #f40612;
+    transform: scale(1.05);
+}
+/* --- 1. Container bọc (quan trọng để định vị) --- */
+.search-bar-wrapper {
+  /* Cần có position: relative để dropdown định vị absolute bên trong nó */
+  position: relative; 
+  width: 230px; /* Điều chỉnh chiều rộng theo thiết kế Header của bạn */
+  z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
+}
+
+/* --- 2. Định dạng chung của Dropdown --- */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%; /* Đặt ngay dưới input (hoặc dưới .search-form) */
+  left: 0;
+  width: 100%; /* Chiều rộng bằng thanh tìm kiếm */
+  
+  /* --- Giới hạn Chiều cao và Thêm Thanh Cuộn --- */
+  /* Giả sử mỗi item có chiều cao khoảng 78px (gồm ảnh 60px + padding). 
+     5 item * ~78px = 390px. Đặt tối đa 400px để có thanh cuộn mượt. */
+  max-height: 400px; 
+  overflow-y: auto; /* Thêm thanh cuộn dọc khi vượt quá max-height */
+  
+  background-color: #1a1a1a; /* Nền tối */
+  border: 1px solid #444;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Ẩn thanh cuộn mặc định trên Webkit browsers (Chrome, Safari) để thẩm mỹ hơn */
+.suggestions-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 3px;
+}
+.suggestions-dropdown::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+
+/* --- 3. Định dạng Item Gợi ý --- */
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #f1f1f1;
+  border-bottom: 1px solid #2a2a2a;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active { /* Class .active được thêm khi điều hướng bằng phím */
+  background-color: #282828; 
+}
+
+.suggestion-image {
+  width: 40px; 
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.suggestion-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.no-results-suggestion {
+    padding: 15px;
+    margin: 0;
+    color: #999;
+    text-align: center;
+    font-style: italic;
+}
+
+/* --- Đảm bảo thanh tìm kiếm cơ bản vẫn ổn --- */
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #333; 
+    border-radius: 6px;
+    overflow: hidden;
+    /* Có thể thêm transition cho form khi focus nếu bạn muốn hiệu ứng mở rộng */
+}
+/* ==================================== */
+/* PHẦN PROFILE VÀ DROPDOWN */
+/* ==================================== */
+
+/* Container bọc cả chữ "Xin chào" và nút toggle */
+.profile-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative; /* Quan trọng để định vị dropdown */
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    user-select: none; /* Ngăn chặn chọn văn bản */
+}
+
+/* Hiệu ứng hover cho khu vực profile */
+.profile-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Văn bản chào mừng */
+.welcome-text {
+    color: #f1f1f1; /* Trắng xám */
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 8px;
+    white-space: nowrap; /* Ngăn chặn xuống dòng */
+}
+
+/* Icon mũi tên */
+.dropdown-toggle-icon {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    height: 12px;
+    width: 12px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+/* Xoay mũi tên khi dropdown mở */
+.dropdown-toggle-icon.open {
+    transform: rotate(180deg);
+}
+
+
+/* STYLING CHO DROPDOWN MENU */
+.profile-dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    /* Nền tối sâu và border mờ */
+    background-color: #141414; 
+    border: 1px solid #333;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    min-width: 150px;
+    z-index: 2000; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    margin-top: 10px; /* Tạo khoảng cách với header */
+}
+
+.dropdown-item {
+    background: none;
+    border: none;
+    color: #ccc;
+    padding: 10px 15px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #333; /* Hover nền xám đậm */
+    color: white;
+}
+
+/* Nút Đăng xuất nổi bật hơn */
+.dropdown-item.logout-btn {
+    border-top: 1px solid #222;
+}
+
+.dropdown-item.logout-btn:hover {
+    background-color: #e50914; /* Màu đỏ Netflix */
+    color: white;
+}
+
+/* ==================================== */
+/* STYLING CHUNG (Giữ nguyên) */
+/* ==================================== */
+
+.login-button {
+    background-color: #e50914;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #ff0b1a;
+}

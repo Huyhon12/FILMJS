@@ -1,0 +1,311 @@
+/* --- BIẾN CSS --- */
+:root {
+    --primary-red: #E50914; /* Màu đỏ nổi bật */
+    --soft-green: #50C878; /* Màu xanh lá của nút */
+    --dark-bg: #141414; /* Nền tối chính */
+    --card-bg: #222222; /* Nền card cho phim */
+    --text-color: #F1F1F1; /* Màu chữ chính */
+    --secondary-text: #AAAAAA; /* Màu chữ phụ */
+}
+
+/* --- Vùng chứa chính của nội dung --- */
+.main-app-container {
+    background-color: var(--dark-bg);
+    min-height: 100vh;
+    color: var(--text-color);
+    background-image: url('../../public/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content-area-wrapper {
+    padding: 0; /* Header sẽ xử lý padding top */
+}
+
+.history-content-container {
+    max-width: 1400px; /* Giới hạn độ rộng như hình ảnh */
+    margin: 0 auto;
+    padding: 40px 60px; /* Padding cho nội dung */
+}
+
+/* --- TIÊU ĐỀ LỊCH SỬ XEM --- */
+.history-main-title {
+    color: var(--text-color);
+    font-size: 2.2rem; /* To hơn và rõ ràng hơn */
+    font-weight: 800; /* Rất đậm */
+    margin-bottom: 40px; /* Khoảng cách lớn hơn */
+    border-bottom: 3px solid var(--primary-red); /* Viền đỏ đậm */
+    padding-bottom: 12px;
+    text-transform: uppercase; /* Chữ hoa như trong hình */
+}
+
+/* --- Hộp thông báo/hành động xóa toàn bộ --- */
+.history-note-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-red); /* Nền đỏ hoàn toàn như hình */
+    padding: 18px 25px; /* Padding lớn hơn */
+    margin-bottom: 40px; /* Khoảng cách lớn hơn */
+    border-radius: 8px; /* Bo góc nhẹ */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.note-text {
+    font-size: 1.1rem; /* Kích thước chữ rõ ràng hơn */
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.note-label {
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 1.2rem; /* Label "LƯU Ý" to hơn */
+}
+
+.clear-history-button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--text-color); /* Viền trắng như hình */
+    padding: 10px 20px; /* Padding lớn hơn cho nút */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.clear-history-button:hover {
+    background-color: var(--text-color);
+    color: var(--primary-red); /* Chữ đỏ khi hover */
+    border-color: var(--text-color);
+}
+
+.clear-history-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-text);
+    border-color: var(--secondary-text);
+}
+
+.clear-history-button .fa-trash-alt {
+    margin-right: 8px; /* Khoảng cách icon và chữ */
+}
+
+/* --- Danh sách phim đã xem (Grid) --- */
+.history-list {
+    display: grid;
+    /* Hiển thị 3 cột trên màn hình lớn như hình ảnh */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; /* Khoảng cách giữa các card */
+    padding-top: 10px;
+}
+
+/* --- Thẻ phim lịch sử xem --- */
+.history-card {
+    background-color: var(--card-bg); 
+    border-radius: 12px; /* Bo góc */
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); /* Shadow nổi bật */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Đảm bảo chiều cao đầy đủ */
+    display: flex;
+    flex-direction: column;
+}
+
+.history-card:hover {
+    transform: translateY(-8px); /* Nhấc lên khi hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8); /* Shadow mạnh hơn khi hover */
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    /* Tỷ lệ ảnh đứng (Portrait) 2:3 như trong hình */
+    padding-bottom: 150%; 
+    background-color: #333333;
+    overflow: hidden; /* Đảm bảo hình ảnh không tràn */
+    border-top-left-radius: 12px; /* Bo góc trên */
+    border-top-right-radius: 12px;
+}
+
+.history-card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.history-card:hover .history-card-image {
+    transform: scale(1.05); /* Zoom nhẹ ảnh khi hover */
+}
+
+/* --- Nút xóa từng mục (trên ảnh) --- */
+.delete-item-button {
+    position: absolute;
+    top: 10px; /* Cách trên 10px */
+    right: 10px; /* Cách phải 10px */
+    background-color: rgba(0, 0, 0, 0.8); /* Nền đen trong suốt */
+    color: var(--text-color);
+    border: none;
+    width: 35px; /* To hơn */
+    height: 35px; /* To hơn */
+    border-radius: 50%; /* Hình tròn */
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0; /* Ẩn mặc định */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem; /* Icon to hơn */
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+.history-card:hover .delete-item-button {
+    opacity: 1; /* Hiện khi hover vào card */
+    background-color: rgba(229, 9, 20, 0.9); /* Nền đỏ khi hover nút */
+}
+
+/* --- Thông tin phim dưới ảnh --- */
+.history-info {
+    padding: 15px; /* Padding thông tin */
+    text-align: left;
+    flex-grow: 1;
+    background-color: var(--card-bg); 
+    border-bottom-left-radius: 12px; /* Bo góc dưới */
+    border-bottom-right-radius: 12px;
+}
+
+.history-title-link {
+    text-decoration: none;
+    display: block;
+    color: var(--text-color);
+    transition: color 0.2s;
+}
+
+.history-title-link:hover {
+    color: var(--primary-red); /* Đổi màu đỏ khi hover */
+}
+
+.history-info h3 {
+    font-size: 1.2rem; /* Tên phim to hơn */
+    font-weight: 700;
+    margin: 5px 0 8px 0; /* Khoảng cách */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Tên phim trên một dòng */
+    height: 25px; /* Đảm bảo chiều cao đủ cho 1 dòng */
+}
+
+.last-watched-time {
+    color: var(--secondary-text);
+    font-size: 0.9rem; /* Thời gian xem nhỏ hơn chút */
+    margin: 0;
+}
+
+/* --- Các trạng thái (Loading, Error, No Content) --- */
+.error-state, .no-content {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--secondary-text);
+    padding: 60px 0;
+    border: 1px dashed var(--primary-red);
+    border-radius: 10px;
+    background-color: #2e2e2e;
+    margin-top: 40px;
+}
+
+/* --- MEDIA QUERIES (Phản hồi trên các thiết bị) --- */
+@media (max-width: 1024px) {
+    .history-content-container {
+        padding: 30px 40px;
+    }
+    .history-main-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    .history-note-box {
+        padding: 15px 20px;
+        margin-bottom: 30px;
+    }
+    .note-text {
+        font-size: 0.95rem;
+    }
+    .note-label {
+        font-size: 1.1rem;
+    }
+    .clear-history-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    .history-list {
+        /* Giảm xuống 2 cột trên tablet */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+    }
+    .history-info h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .history-content-container {
+        padding: 20px;
+    }
+    .history-main-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    .history-note-box {
+        flex-direction: column; /* Xếp chồng trên mobile */
+        align-items: flex-start; /* Căn trái */
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+    .note-text {
+        margin-bottom: 10px; /* Khoảng cách giữa text và button */
+        font-size: 0.9rem;
+    }
+    .clear-history-button {
+        width: 100%; /* Nút xóa chiếm toàn bộ chiều rộng */
+        justify-content: center; /* Căn giữa nội dung nút */
+        font-size: 0.9rem;
+    }
+    .history-list {
+        /* Chỉ 2 cột trên điện thoại */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .delete-item-button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    .history-info {
+        padding: 10px;
+    }
+    .history-info h3 {
+        font-size: 1rem;
+    }
+    .last-watched-time {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-list {
+        /* 1 cột trên các điện thoại rất nhỏ, hoặc giữ 2 cột nhưng nhỏ hơn */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
